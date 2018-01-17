@@ -6,7 +6,7 @@
 * AuthorLink: http://gnutec.ir
 */
 
-function gnt_png2jpg($input, $output) {
+function gnt_png2jpg($input, $output, $quallity = "") {
     $input_file = $input;
     $output_file = $output;
 
@@ -16,7 +16,12 @@ function gnt_png2jpg($input, $output) {
     $white = imagecolorallocate($output,  255, 255, 255);
     imagefilledrectangle($output, 0, 0, $width, $height, $white);
     imagecopy($output, $input, 0, 0, 0, 0, $width, $height);
-    $result = imagejpeg($output, $output_file);
+    if(!empty($quallity)){
+        $result = imagejpeg($output, $output_file,$quallity);
+    }else{
+        $result = imagejpeg($output, $output_file);
+    }
+    
     if($result){
         echo "<span style=\"color: greenyellow;\">output OK</span><br>";
     }else{
@@ -38,6 +43,8 @@ foreach ($inputGallery_array as $filename) {
     $sitename = str_replace(".png", "", $sitename);
     if (preg_match("/\.(png)$/", $filename)) {
         $output = "outputGallery/{$sitename}.jpg";
+        // $quallity = 70; #set quallity
+        // gnt_png2jpg($filename,$output,$quallity);
         gnt_png2jpg($filename,$output);
     } else {
         gnt_jpg2png();
