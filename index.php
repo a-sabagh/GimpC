@@ -30,7 +30,7 @@ function gnt_png2jpg($input, $output, $quallity = "") {
 }
 
 function gnt_jpg2png() {
-    echo "<span class=\"color:red;\">input type is image/png</span><br>";
+    echo "<span class=\"color:red;\">input type is already image/jpg</span><br>";
 }
 
 ini_set('memory_limit', '-1');
